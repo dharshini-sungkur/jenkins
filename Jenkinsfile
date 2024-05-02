@@ -41,12 +41,12 @@ pipeline {
         success {
             mail to: 'dharshinisungkur@gmail.com', 
             subject: 'Build Status Email', 
-            body: 'Stage completed successfully', 
+            body: 'Stage completed successfully'
         }
         failure {
             mail to: 'dharshinisungkur@gmail.com', 
             subject: 'Build Status Email', 
-            body: 'Stage failed', 
+            body: 'Stage failed'
         }
     }
 }
