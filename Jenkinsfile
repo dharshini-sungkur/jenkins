@@ -69,14 +69,14 @@ pipeline {
         success {
             emailext attachLog: true,
             to: 'dharshinisungkur@gmail.com', 
-            subject: 'Build Status Email', 
-            body: 'Build completed successfully'
+            subject: 'Pipeline Status Email', 
+            body: 'Pipelin completed successfully'
         }
         failure {
             emailext attachLog: true,
             to: 'dharshinisungkur@gmail.com', 
-            subject: 'Build Status Email', 
-            body: 'Build failed'
+            subject: 'Pipeline Status Email', 
+            body: 'Pipeline failed'
         }
     }
 }
