@@ -20,6 +20,20 @@ pipeline {
             steps {
                 echo 'Performing security scan using OWASP ZAP.'
             }
+            post {
+                success {
+                    emailext attachLog: true,
+                    mail to: 'dharshinisungkur@gmail.com', 
+                    subject: 'Security scan Status Email', 
+                    body: 'Security scan completed successfully', 
+                }
+                failure {
+                    emailext attachLog: true,
+                    mail to: 'dharshinisungkur@gmail.com', 
+                    subject: 'Security scan Status Email', 
+                    body: 'Security scan failed', 
+                }
+            }
         }
         stage('Deploy to Staging') {
             steps {
@@ -30,6 +44,20 @@ pipeline {
             steps {
                 echo 'Running integration tests in the staging environment.'
             }
+            post {
+                success {
+                    emailext attachLog: true,
+                    mail to: 'dharshinisungkur@gmail.com', 
+                    subject: 'Integration Tests Status Email', 
+                    body: 'Integration tests completed successfully', 
+                }
+                failure {
+                    emailext attachLog: true,
+                    mail to: 'dharshinisungkur@gmail.com', 
+                    subject: 'Build Status Email', 
+                    body: 'integration tests failed', 
+                }
+            }
         }
         stage('Deploy to Production') {
             steps {
@@ -39,14 +67,16 @@ pipeline {
     }
     post {
         success {
+            emailext attachLog: true,
             mail to: 'dharshinisungkur@gmail.com', 
             subject: 'Build Status Email', 
-            body: 'Stage completed successfully'
+            body: 'Build completed successfully', 
         }
         failure {
+            emailext attachLog: true,
             mail to: 'dharshinisungkur@gmail.com', 
             subject: 'Build Status Email', 
-            body: 'Stage failed'
+            body: 'Build failed', 
         }
     }
 }
