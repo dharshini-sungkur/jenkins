@@ -13,13 +13,13 @@ pipeline {
             post {
                 success {
                     emailext attachLog: true,
-                    mail to: 'dharshinisungkur@gmail.com', 
+                    to: 'dharshinisungkur@gmail.com', 
                     subject: 'Integration Tests Status Email', 
                     body: 'Integration tests completed successfully'
                 }
                 failure {
                     emailext attachLog: true,
-                    mail to: 'dharshinisungkur@gmail.com', 
+                    to: 'dharshinisungkur@gmail.com', 
                     subject: 'Build Status Email', 
                     body: 'integration tests failed'
                 }
@@ -37,13 +37,13 @@ pipeline {
             post {
                 success {
                     emailext attachLog: true,
-                    mail to: 'dharshinisungkur@gmail.com', 
+                    to: 'dharshinisungkur@gmail.com', 
                     subject: 'Security scan Status Email', 
                     body: 'Security scan completed successfully' 
                 }
                 failure {
                     emailext attachLog: true,
-                    mail to: 'dharshinisungkur@gmail.com', 
+                    to: 'dharshinisungkur@gmail.com', 
                     subject: 'Security scan Status Email', 
                     body: 'Security scan failed'
                 }
@@ -68,13 +68,13 @@ pipeline {
     post {
         success {
             emailext attachLog: true,
-            mail to: 'dharshinisungkur@gmail.com', 
+            to: 'dharshinisungkur@gmail.com', 
             subject: 'Build Status Email', 
             body: 'Build completed successfully'
         }
         failure {
             emailext attachLog: true,
-            mail to: 'dharshinisungkur@gmail.com', 
+            to: 'dharshinisungkur@gmail.com', 
             subject: 'Build Status Email', 
             body: 'Build failed'
         }
