@@ -10,6 +10,20 @@ pipeline {
             steps {
                 echo 'Running unit and integration tests using JUnit and Selenium.'
             }
+            post {
+                success {
+                    emailext attachLog: true,
+                    mail to: 'dharshinisungkur@gmail.com', 
+                    subject: 'Integration Tests Status Email', 
+                    body: 'Integration tests completed successfully'
+                }
+                failure {
+                    emailext attachLog: true,
+                    mail to: 'dharshinisungkur@gmail.com', 
+                    subject: 'Build Status Email', 
+                    body: 'integration tests failed'
+                }
+            }
         }
         stage('Code Analysis') {
             steps {
@@ -25,13 +39,13 @@ pipeline {
                     emailext attachLog: true,
                     mail to: 'dharshinisungkur@gmail.com', 
                     subject: 'Security scan Status Email', 
-                    body: 'Security scan completed successfully', 
+                    body: 'Security scan completed successfully' 
                 }
                 failure {
                     emailext attachLog: true,
                     mail to: 'dharshinisungkur@gmail.com', 
                     subject: 'Security scan Status Email', 
-                    body: 'Security scan failed', 
+                    body: 'Security scan failed'
                 }
             }
         }
@@ -43,20 +57,6 @@ pipeline {
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests in the staging environment.'
-            }
-            post {
-                success {
-                    emailext attachLog: true,
-                    mail to: 'dharshinisungkur@gmail.com', 
-                    subject: 'Integration Tests Status Email', 
-                    body: 'Integration tests completed successfully', 
-                }
-                failure {
-                    emailext attachLog: true,
-                    mail to: 'dharshinisungkur@gmail.com', 
-                    subject: 'Build Status Email', 
-                    body: 'integration tests failed', 
-                }
             }
         }
         stage('Deploy to Production') {
@@ -70,13 +70,13 @@ pipeline {
             emailext attachLog: true,
             mail to: 'dharshinisungkur@gmail.com', 
             subject: 'Build Status Email', 
-            body: 'Build completed successfully', 
+            body: 'Build completed successfully'
         }
         failure {
             emailext attachLog: true,
             mail to: 'dharshinisungkur@gmail.com', 
             subject: 'Build Status Email', 
-            body: 'Build failed', 
+            body: 'Build failed'
         }
     }
 }
