@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Unit and Integration Tests') {
             steps {
-                echo 'Running unit and integration tests using JUnit and Selenium.'
+                echo 'Running unit and integration tests using JUnit and Selenium'
             }
             post {
                 success {
